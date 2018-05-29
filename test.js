@@ -27,12 +27,31 @@ function KakaoApi(appKey) {
 		});
 	}
 
+	function share(keywords) { // 공유하기
+		alert(JSON.stringify(keywords));
+	}
+
 	return { // 함수 리턴
 		onClickLoginBt: function(){ // 로그인버튼 클릭시 실행
 			login()
 		},
 		onClickUserInfoBt: function() { // userInfo 가져옴
 			userInfo()
+		},
+		share: function(jqxhr) { // promise (제이쿼리)
+			jqxhr.done(function(result) { // 제이쿼리의 success
+				share(result.data)
+			})
+		}
+	}
+}
+
+function JejuApi(appKey) {
+	return {
+		getKeywords: function() {
+			return $.get('https://gw.jejudatahub.net/api/proxy/39b8d232dbb011e79252394919cf6a6f/'
+			+ appKey
+			+ '?endDate=2018-01-14')
 		}
 	}
 }

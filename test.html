@@ -9,10 +9,22 @@
     <h1>I'm not Fine...</h1>
     <input type="button" id="loginBt" onclick="kakaoApi.onClickLoginBt();" value="Login">
     <input type="button" id="userInfoBt" onclick="kakaoApi.onClickUserInfoBt();" value="userInfo">    
+    <input type="button" id="share" onclick="view.onClickShareKeywordBt();" value="share">        
     <img src="ssosoCat.jpg" alt="profile cat" id="profileImg">
     <a id="kakao-login-btn"></a>
     <script type='text/javascript'>
       var kakaoApi = KakaoApi('a39f4317b4215220654e39e4ebfc8f1c');
+      var appKey = '54dd4ec3d0974c799d4ec3d0973c7913';
+      var jejuApi = JejuApi(appKey);
+      var view = View(kakaoApi, jejuApi);
+      function View(kakaoApi, jejuApi) {	
+        return {
+          onClickShareKeywordBt: function() {
+            kakaoApi.share(jejuApi.getKeywords())
+          }
+        }
+      }
+      console.log(jejuApi.getKeywords)
     </script>
   </body>
 </html>
